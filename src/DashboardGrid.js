@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from "react-dom";
 import cx from "classnames";
 import 'whatwg-fetch';
-
+import ReactEcharts from 'echarts-for-react';
 
 import GridLayout from './grid/GridLayout';
 
@@ -22,7 +22,56 @@ class DashboardGrid extends Component {
         y: 0,
         w: initialSize.width,
         h: initialSize.height,
-        minSize: DEFAULT_CARD_SIZE
+        minSize: DEFAULT_CARD_SIZE,
+        type: 'bar',
+        option: {
+          title : {
+            text: 'Bar dataSet',
+          },
+          grid: {
+            zlevel: 10,
+            x: 80,
+            y: 80,
+            borderWidth: 1,
+            borderColor: 'red'
+          },
+          color: ['#11807F'],
+          tooltip : {
+            trigger: 'axis'
+          },
+          legend: {
+            data:['蒸发量']
+          },
+          toolbox: {
+            show : true,
+            feature : {
+              mark : {show: true},
+              dataView : {show: true, readOnly: false},
+              magicType : {show: true, type: ['line', 'bar']},
+              restore : {show: true},
+              saveAsImage : {show: true}
+            }
+          },
+          calculable : true,
+          xAxis : [
+            {
+              type : 'category',
+              data : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+            }
+          ],
+          yAxis : [
+            {
+              type : 'value'
+            }
+          ],
+          series : [
+            {
+              name:'降水量',
+              type:'bar',
+              data:[100, 105, 102, 110, 114, 109, 105, 99, 95],
+            }
+          ]
+        }
       },
         {
           i: '2',
@@ -30,7 +79,79 @@ class DashboardGrid extends Component {
           y: 6,
           w: initialSize.width,
           h: initialSize.height,
-          minSize: DEFAULT_CARD_SIZE
+          minSize: DEFAULT_CARD_SIZE,
+          type: 'pie',
+          option: {
+            title : {
+              text: 'Pie dataset',
+              x:'center'
+            },
+            tooltip : {
+              trigger: 'item',
+              formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+              orient : 'vertical',
+              x : 'left',
+              data:['Sandwiches','Salads','Soup','Beverages','Desserts']
+            },
+            toolbox: {
+              show : true,
+              feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {
+                  show: true,
+                  type: ['pie', 'funnel'],
+                  option: {
+                    funnel: {
+                      x: '25%',
+                      width: '50%',
+                      funnelAlign: 'left',
+                      max: 1548
+                    }
+                  }
+                },
+                restore : {show: true},
+                saveAsImage : {show: true}
+              }
+            },
+            calculable : true,
+            series : [
+              {
+                name:'访问来源',
+                type:'pie',
+                radius : ['50%', '70%'],
+                itemStyle : {
+                  normal : {
+                    label : {
+                      show : true
+                    },
+                    labelLine : {
+                      show : true
+                    }
+                  },
+                  emphasis : {
+                    label : {
+                      show : true,
+                      position : 'center',
+                      textStyle : {
+                        fontSize : '30',
+                        fontWeight : 'bold'
+                      }
+                    }
+                  }
+                },
+                data:[
+                  {value:40, name:'Sandwiches'},
+                  {value:21, name:'Salads'},
+                  {value:15, name:'Soup'},
+                  {value:9, name:'Beverages'},
+                  {value:15, name:'Desserts'}
+                ]
+              }
+            ]
+          }
         }],
       isDragging: false
     };
@@ -90,7 +211,10 @@ class DashboardGrid extends Component {
         {this.state.layout.map(dc =>
           <div key={dc.i} className="DashCard">
             <div className="Card bordered rounded flex flex-column hover-parent hover--visibility">
-              <label>{dc.i}</label>
+              <ReactEcharts
+                option={dc.option}
+                style={{height: '100%', width: '100%'}}
+                className='react_for_echarts' />
             </div>
           </div>
         )}
