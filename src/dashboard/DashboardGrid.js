@@ -5,10 +5,10 @@ import 'whatwg-fetch';
 import ReactEcharts from 'echarts-for-react';
 import _ from 'underscore';
 
-import GridLayout from './grid/GridLayout';
+import GridLayout from '../grid/GridLayout';
 
-import barImage from './images/bar.png';
-import pieImage from './images/pie.png';
+import barImage from '../images/bar.png';
+import pieImage from '../images/pie.png';
 
 const GRID_WIDTH = 18;
 const GRID_ASPECT_RATIO = 4 / 3;

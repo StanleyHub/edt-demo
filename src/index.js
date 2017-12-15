@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard/Dashboard';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<Dashboard />, document.getElementById('root'));
