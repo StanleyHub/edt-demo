@@ -19,7 +19,6 @@ const DEFAULT_CARD_SIZE = {width: 4, height: 4};
 class DashboardGrid extends Component {
   constructor() {
     super();
-    let initialSize = DEFAULT_CARD_SIZE;
     this.state = {
       layout: [],
       isDragging: false
@@ -216,8 +215,8 @@ class DashboardGrid extends Component {
     const rowHeight = Math.floor(width / GRID_WIDTH / GRID_ASPECT_RATIO);
     return (
       <div className="wrapper">
-        <img src={barImage} style={{width: 50, height: 50}} onClick={this.addBar.bind(this)}></img>
-        <img src={pieImage} style={{width: 50, height: 50}} onClick={this.addPie.bind(this)}></img>
+        <img src={barImage} style={{width: 50, height: 50}} onClick={this.addBar.bind(this)} alt="bar"></img>
+        <img src={pieImage} style={{width: 50, height: 50}} onClick={this.addPie.bind(this)} alt="pie"></img>
         <GridLayout
           className={cx("DashboardGrid", {
             "Dash--editing": true,
