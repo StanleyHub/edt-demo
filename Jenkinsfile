@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'cd build'
-                sh 'yarn start'
+                sh 'yarn start &'
             }
         }
     }
