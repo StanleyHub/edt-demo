@@ -5,7 +5,7 @@ import 'whatwg-fetch';
 import ReactEcharts from 'echarts-for-react';
 import _ from 'underscore';
 
-import GridLayout from '../grid/GridLayout';
+import GridLayout from './grid/GridLayout';
 
 import barImage from '../images/bar.png';
 import pieImage from '../images/pie.png';
